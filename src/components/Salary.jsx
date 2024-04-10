@@ -1,7 +1,8 @@
 import { useState } from "react"
 import SalaryInput from "./SalaryInput"
 
-const Salary = () => {
+const Salary = (props) => {
+    const {setSalary} = props;
     const [inputValue, setInputValue] = useState('');
     const [inputSavedValue, setInputSavedValue] = useState('');
     const [rangeInputValue, setRangeInputValue] = useState('');
@@ -10,13 +11,15 @@ const Salary = () => {
         const value = event.target.value;
         const filteredValue = value.replace(/\D/g, '');
         setInputValue(filteredValue);
-        setInputSavedValue(filteredValue);
+        setSalary(filteredValue);
+        setInputSavedValue(inputValue);
         setRangeInputValue(50);
     }
 
     const handleRangeInputChange = (event)=>{
         const value = event.target.value;
         setInputValue(Math.round(inputSavedValue*value/100*2));
+        setSalary(inputValue);
         setRangeInputValue(value);
     }
 
@@ -25,6 +28,7 @@ const Salary = () => {
         const filteredValue = value.replace(/%/g, '');
         setInputValue(Math.round(inputValue-(filteredValue/100*inputValue)*-1));
         setInputSavedValue(inputValue);
+        setSalary(inputValue);
         setRangeInputValue(50);
     }
 
