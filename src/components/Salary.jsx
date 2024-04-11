@@ -12,15 +12,15 @@ const Salary = (props) => {
         const filteredValue = value.replace(/\D/g, '');
         setInputValue(filteredValue);
         setSalary(filteredValue);
-        setInputSavedValue(inputValue);
+        setInputSavedValue(filteredValue);
         setRangeInputValue(50);
         resetSwitches();
     }
 
     const handleRangeInputChange = (event)=>{
         const value = event.target.value;
-        setInputValue(Math.round(inputSavedValue*value/10*2));
-        setSalary(Math.round(inputSavedValue*value/10*2));
+        setInputValue(Math.round(inputSavedValue*value/100*2));
+        setSalary(Math.round(inputSavedValue*value/100*2));
         setRangeInputValue(value);
         resetSwitches();
     }
