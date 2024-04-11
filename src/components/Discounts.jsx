@@ -1,12 +1,14 @@
 import { useState } from "react";
 import LabeledSwitch from "./LabeledSwitch"
 import DateModal from "./DateModal";
+import DiscountAfterChildren from "./DiscountAfterChildren";
 
 const Discounts = (props) => {
-  const {salary,discount,setDiscount,setPlusFromMarriage} = props;
+  const {salary,discount,setDiscount,setPlusFromMarriage,setPlusFromChildren} = props;
   const [discountFromPersonal, setDiscountFromPersonal] = useState('');
   const [discountFromUnder, setDiscountFromUnder] = useState('');
   const [showNewMarriage, setShowNewMarriage] = useState('');
+  const [showDiscountFromChildren, setShowDiscountFromChildren] = useState('');
 
   const handleUnderTwentyFiveSwitch = (event) =>{
     const checked = event.target.checked;
@@ -35,6 +37,10 @@ const Discounts = (props) => {
     const checked = event.target.checked;
     setShowNewMarriage(checked);
   }
+  const handleChildrenPlus = (event) =>{
+    const checked = event.target.checked;
+    setShowDiscountFromChildren(checked);
+  }
 
 
   return (
@@ -42,7 +48,7 @@ const Discounts = (props) => {
         <LabeledSwitch title={"25 év alattiak kedvezménye"} handler={handleUnderTwentyFiveSwitch} />
         <LabeledSwitch title={"Friss házasok kedvezménye"} handler={handleNewMarriage} /> {showNewMarriage && <DateModal setPlusFromMarriage={setPlusFromMarriage}/>} 
         <LabeledSwitch title={"Személyi adókedvezmény"} handler={handlePersonalDiscount}/> 
-        <LabeledSwitch title={"Családi adókedvezmény"} />
+        <LabeledSwitch title={"Családi adókedvezmény"}handler={handleChildrenPlus} /> {showDiscountFromChildren && <DiscountAfterChildren setPlusFromChildren={setPlusFromChildren}/>}
     </div>
   )
 }
