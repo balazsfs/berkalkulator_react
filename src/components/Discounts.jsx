@@ -3,7 +3,7 @@ import LabeledSwitch from "./LabeledSwitch"
 import DateModal from "./DateModal";
 
 const Discounts = (props) => {
-  const {salary,discount,setDiscount} = props;
+  const {salary,discount,setDiscount,setPlusFromMarriage} = props;
   const [discountFromPersonal, setDiscountFromPersonal] = useState('');
   const [discountFromUnder, setDiscountFromUnder] = useState('');
   const [showNewMarriage, setShowNewMarriage] = useState('');
@@ -40,7 +40,7 @@ const Discounts = (props) => {
   return (
     <div>
         <LabeledSwitch title={"25 év alattiak kedvezménye"} handler={handleUnderTwentyFiveSwitch} />
-        <LabeledSwitch title={"Friss házasok kedvezménye"} handler={handleNewMarriage} /> {showNewMarriage && <DateModal/>} 
+        <LabeledSwitch title={"Friss házasok kedvezménye"} handler={handleNewMarriage} /> {showNewMarriage && <DateModal setPlusFromMarriage={setPlusFromMarriage}/>} 
         <LabeledSwitch title={"Személyi adókedvezmény"} handler={handlePersonalDiscount}/> 
         <LabeledSwitch title={"Családi adókedvezmény"} />
     </div>

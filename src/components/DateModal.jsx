@@ -1,8 +1,9 @@
 import { useState } from "react"
 
-const DateModal = () => {
+const DateModal = (props) => {
     const [showModal, setShowModal] = useState(false);
     const [eligible,setEligible] = useState('');
+    const {setPlusFromMarriage} = props;
 
     const handleDateInputCheck = () => {
         const value = document.getElementById('dateInput').value;
@@ -19,11 +20,13 @@ const DateModal = () => {
             const dayDiff = date.toDateString().split(' ')[2] - day;
             const diffInYear = yearDiff + monthDiff/12 + dayDiff/365;
 
-            if(diffInYear <= 2.0){
+            if(diffInYear <= 2.0 && diffInYear >= 0){
                 setEligible(true);
+                setPlusFromMarriage(5000);
             }else{
                 setEligible(false);
                 document.getElementById('notEligible').classList.remove('hidden');
+                setPlusFromMarriage(0);
             }
         } else {
             errorDiv.classList.remove('hidden');
@@ -31,7 +34,7 @@ const DateModal = () => {
     }
 
     return (
-      <>
+      <div className="flex">
         <button
           className="bg-slate-500 text-white font-bold text-sm px-2 py-1 rounded-xl mb-1"
           type="button"
@@ -39,7 +42,7 @@ const DateModal = () => {
         >
           Dátum hozzáadása
         </button>
-        {eligible ? <div className="bg-green-600 rounded-xl text-white mb-1 w-32 font-bold text-center">Jogosult</div> : <div id="notEligible" className="bg-red-600 rounded-xl text-white mb-1 w-32 font-bold text-center hidden">Nem jogosult</div>}
+        {eligible ? <div className="bg-green-500 ml-1 text-sm p-1 rounded-xl text-white mb-1 w-32 font-bold text-center">Jogosult</div> : <div id="notEligible" className="bg-red-600 rounded-xl text-white text-sm p-1 ml-1 mb-1 w-32 font-bold text-center hidden">Nem jogosult</div>}
         {showModal ? (
           <>
             <div
@@ -77,7 +80,7 @@ const DateModal = () => {
             <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
           </>
         ) : null}
-      </>
+      </div>
     );
 }
 
