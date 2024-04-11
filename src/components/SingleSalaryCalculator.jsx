@@ -5,9 +5,11 @@ import { useState } from "react"
 
 const SingleSalaryCalculator = () => {
   const [salary,setSalary] = useState(0);
-  const [plusFromMarriage, setPlusFromMarriage] = useState(0);
   const [discount,setDiscount] = useState(0);
+  const [plusFromMarriage, setPlusFromMarriage] = useState(0);
   const [plusFromChildren, setPlusFromChildren] = useState(0);
+  const [showNewMarriage, setShowNewMarriage] = useState('');
+  const [showDiscountFromChildren, setShowDiscountFromChildren] = useState('');
 
   const resetSwitches = ()=>{
     const switches = document.querySelectorAll('#switch');
@@ -17,6 +19,9 @@ const SingleSalaryCalculator = () => {
     });
     setDiscount(0);
     setPlusFromMarriage(0);
+    setPlusFromChildren(0);
+    setShowNewMarriage(false);
+    setShowDiscountFromChildren(false);
   }
 
   return (
@@ -25,7 +30,7 @@ const SingleSalaryCalculator = () => {
         <div className="container bg-slate-200 rounded-xl p-5">
             <PageName />
             <Salary setSalary={setSalary} resetSwitches={resetSwitches} />
-            <Discounts setSalary={setSalary} salary={salary} setDiscount={setDiscount} discount={discount} setPlusFromMarriage={setPlusFromMarriage} setPlusFromChildren={setPlusFromChildren}/>
+            <Discounts setSalary={setSalary} salary={salary} setDiscount={setDiscount} discount={discount} setPlusFromMarriage={setPlusFromMarriage} setPlusFromChildren={setPlusFromChildren} showNewMarriage={showNewMarriage} setShowNewMarriage={setShowNewMarriage} showDiscountFromChildren={showDiscountFromChildren} setShowDiscountFromChildren={setShowDiscountFromChildren}/>
             <div>
             <div className="text-center">
                 <div className="text-xl font-bold text-slate-600 p-2">

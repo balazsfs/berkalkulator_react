@@ -4,11 +4,9 @@ import DateModal from "./DateModal";
 import DiscountAfterChildren from "./DiscountAfterChildren";
 
 const Discounts = (props) => {
-  const {salary,discount,setDiscount,setPlusFromMarriage,setPlusFromChildren} = props;
+  const {salary,discount,setDiscount,setPlusFromMarriage,setPlusFromChildren,showNewMarriage,setShowNewMarriage,showDiscountFromChildren,setShowDiscountFromChildren} = props;
   const [discountFromPersonal, setDiscountFromPersonal] = useState('');
   const [discountFromUnder, setDiscountFromUnder] = useState('');
-  const [showNewMarriage, setShowNewMarriage] = useState('');
-  const [showDiscountFromChildren, setShowDiscountFromChildren] = useState('');
 
   const handleUnderTwentyFiveSwitch = (event) =>{
     const checked = event.target.checked;
@@ -36,10 +34,12 @@ const Discounts = (props) => {
   const handleNewMarriage = (event) =>{
     const checked = event.target.checked;
     setShowNewMarriage(checked);
+    setPlusFromMarriage(0);
   }
   const handleChildrenPlus = (event) =>{
     const checked = event.target.checked;
     setShowDiscountFromChildren(checked);
+    setPlusFromChildren(0);
   }
 
 
