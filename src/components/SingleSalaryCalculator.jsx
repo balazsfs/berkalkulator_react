@@ -1,9 +1,10 @@
 import PageName from "./PageName"
 import Salary from "./Salary"
 import Discounts from "./Discounts"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import SalaryOut from "./SalaryOut"
 import Tabs from "./Tabs"
+import { TotalSalaryContext } from "../contexts/TotalSalaryContext"
 
 const SingleSalaryCalculator = () => {
   const [salary,setSalary] = useState(0);
@@ -12,6 +13,23 @@ const SingleSalaryCalculator = () => {
   const [plusFromChildren, setPlusFromChildren] = useState(0);
   const [showNewMarriage, setShowNewMarriage] = useState('');
   const [showDiscountFromChildren, setShowDiscountFromChildren] = useState('');
+  const [currentIndex,setCurrentIndex] = useState(0);
+
+  const [totalSalary,setTotalSalary] = useContext(TotalSalaryContext);
+
+  const createNewTab = () =>{
+    const basicData = {
+      'name' : '',
+      'salary' : 0,
+      'discount' : 0,
+      'plusFromMarriage' : 0,
+      'plusFromChildren' : 0,
+      'showNewMarriage' : false,
+      'showDiscountFromChildren' : false
+    }
+    const prevTotalSalary = totalSalary;
+    setTotalSalary(prevTotalSalary => [...prevTotalSalary, basicData]);
+  }
 
   const resetSwitches = ()=>{
     const switches = document.querySelectorAll('#switch');
@@ -26,15 +44,17 @@ const SingleSalaryCalculator = () => {
     setShowDiscountFromChildren(false);
   }
 
+
+
   return (
     <div>
-        <Tabs/>
+        <Tabs createNewTab={createNewTab} setCurrentIndex={setCurrentIndex} currentIndex={currentIndex}/>
         <div className="grid grid-cols-2 gap-5 px-5">
           <div className="container bg-slate-200 rounded-xl p-5">
-              <PageName />
-              <Salary setSalary={setSalary} resetSwitches={resetSwitches} />
-              <Discounts setSalary={setSalary} salary={salary} setDiscount={setDiscount} discount={discount} setPlusFromMarriage={setPlusFromMarriage} setPlusFromChildren={setPlusFromChildren} showNewMarriage={showNewMarriage} setShowNewMarriage={setShowNewMarriage} showDiscountFromChildren={showDiscountFromChildren} setShowDiscountFromChildren={setShowDiscountFromChildren}/>
-              <SalaryOut salary={salary} discount={discount} plusFromChildren={plusFromChildren} plusFromMarriage={plusFromMarriage}/>
+              <PageName currentIndex={currentIndex} />
+              <Salary setSalary={setSalary} resetSwitches={resetSwitches} currentIndex={currentIndex} />
+              <Discounts setSalary={setSalary} salary={salary} setDiscount={setDiscount} discount={discount} setPlusFromMarriage={setPlusFromMarriage} setPlusFromChildren={setPlusFromChildren} showNewMarriage={showNewMarriage} setShowNewMarriage={setShowNewMarriage} showDiscountFromChildren={showDiscountFromChildren} setShowDiscountFromChildren={setShowDiscountFromChildren} currentIndex={currentIndex}/>
+              <SalaryOut salary={salary} discount={discount} plusFromChildren={plusFromChildren} plusFromMarriage={plusFromMarriage} currentIndex={currentIndex}/>
           </div>
         <div className="container bg-slate-200 rounded-xl">
 

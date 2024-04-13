@@ -4,7 +4,15 @@ import {TotalSalaryContext} from "./contexts/TotalSalaryContext"
 
 
 function App() {
-  const [totalSalary,setTotalSalary] = useState('');
+  const [totalSalary,setTotalSalary] = useState([{
+    'name' : '',
+    'salary' : 0,
+    'discount' : 0,
+    'plusFromMarriage' : 0,
+    'plusFromChildren' : 0,
+    'showNewMarriage' : false,
+    'showDiscountFromChildren' : false
+  }]);
 
   return (
     <>

@@ -1,4 +1,4 @@
 import { createContext } from "react";
 
-export const TotalSalaryContext = createContext('');
+export const TotalSalaryContext = createContext();
 
