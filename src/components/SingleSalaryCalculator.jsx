@@ -51,8 +51,8 @@ const SingleSalaryCalculator = () => {
         <div className="grid grid-cols-2 gap-5 px-5">
           <div className="container bg-slate-200 rounded-xl p-5">
               <PageName currentIndex={currentIndex} />
-              <Salary setSalary={setSalary} resetSwitches={resetSwitches} currentIndex={currentIndex} />
-              <Discounts setSalary={setSalary} salary={salary} setDiscount={setDiscount} discount={discount} setPlusFromMarriage={setPlusFromMarriage} setPlusFromChildren={setPlusFromChildren} showNewMarriage={showNewMarriage} setShowNewMarriage={setShowNewMarriage} showDiscountFromChildren={showDiscountFromChildren} setShowDiscountFromChildren={setShowDiscountFromChildren} currentIndex={currentIndex}/>
+              <Salary resetSwitches={resetSwitches} currentIndex={currentIndex} />
+              <Discounts currentIndex={currentIndex}/>
               <SalaryOut salary={salary} discount={discount} plusFromChildren={plusFromChildren} plusFromMarriage={plusFromMarriage} currentIndex={currentIndex}/>
           </div>
         <div className="container bg-slate-200 rounded-xl">

@@ -1,16 +1,9 @@
-import { useState } from "react"
 import SalaryInput from "./SalaryInput"
 import { TotalSalaryContext } from "../contexts/TotalSalaryContext"
 import { useContext } from 'react';
 
-const Salary = (props) => {
-    // TODO: SET SALARY DELETE 
-    const {resetSwitches,currentIndex} = props;
-
+const Salary = ({resetSwitches,currentIndex}) => {
     const [totalSalary, setTotalSalary] = useContext(TotalSalaryContext);
-
-    const [inputSavedValue, setInputSavedValue] = useState('');
-    const [rangeInputValue, setRangeInputValue] = useState('');
  
     const handleInputChange = (event) => {
         const value = event.target.value;

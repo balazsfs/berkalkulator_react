@@ -12,7 +12,9 @@ function App() {
     'savedInput' : 0,
     'plusFromMarriage' : 0,
     'plusFromChildren' : 0,
+    'underDiscountSwitch' : false,
     'showNewMarriage' : false,
+    'perosalDiscountSwitch' : false,
     'showDiscountFromChildren' : false
   }]);
 
