@@ -26,7 +26,9 @@ const SingleSalaryCalculator = () => {
       'savedInput' : 0,
       'plusFromMarriage' : 0,
       'plusFromChildren' : 0,
+      'underDiscountSwitch' : false,
       'showNewMarriage' : false,
+      'personalDiscountSwitch' : false,
       'showDiscountFromChildren' : false
     }
     setTotalSalary(prevTotalSalary => [...prevTotalSalary, basicData]);

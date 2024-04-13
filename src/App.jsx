@@ -14,7 +14,7 @@ function App() {
     'plusFromChildren' : 0,
     'underDiscountSwitch' : false,
     'showNewMarriage' : false,
-    'perosalDiscountSwitch' : false,
+    'personalDiscountSwitch' : false,
     'showDiscountFromChildren' : false
   }]);
 

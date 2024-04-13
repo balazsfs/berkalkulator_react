@@ -44,7 +44,7 @@ const Discounts = ({currentIndex}) => {
   const handlePersonalDiscount = (event) =>{
     const checked = event.target.checked;
 
-    const discountFromSalary = salary < 77300 ? salary*0.335 : 77300;
+    const discountFromSalary = totalSalary[currentIndex].salary < 77300 ? totalSalary[currentIndex].salary*0.335 : 77300;
 
     if(checked){
       setDiscountFromPersonal(discountFromSalary);
