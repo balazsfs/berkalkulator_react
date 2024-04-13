@@ -8,6 +8,8 @@ function App() {
     'name' : '',
     'salary' : 0,
     'discount' : 0,
+    'rangeInput':50,
+    'savedInput' : 0,
     'plusFromMarriage' : 0,
     'plusFromChildren' : 0,
     'showNewMarriage' : false,

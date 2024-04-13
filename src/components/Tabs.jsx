@@ -1,9 +1,6 @@
 import Tab from "./Tab"
-import { TotalSalaryContext } from "../contexts/TotalSalaryContext"
-import { useContext } from 'react';
 
-const Tabs = ({setCurrentIndex,createNewTab}) => {
-    const [totalSalary, setTotalSalary] = useContext(TotalSalaryContext);
+const Tabs = ({setCurrentIndex,createNewTab,totalSalary}) => {
 
     const plusHandler = () =>{
         createNewTab();

@@ -22,12 +22,13 @@ const SingleSalaryCalculator = () => {
       'name' : '',
       'salary' : 0,
       'discount' : 0,
+      'rangeInput':50,
+      'savedInput' : 0,
       'plusFromMarriage' : 0,
       'plusFromChildren' : 0,
       'showNewMarriage' : false,
       'showDiscountFromChildren' : false
     }
-    const prevTotalSalary = totalSalary;
     setTotalSalary(prevTotalSalary => [...prevTotalSalary, basicData]);
   }
 
@@ -44,11 +45,9 @@ const SingleSalaryCalculator = () => {
     setShowDiscountFromChildren(false);
   }
 
-
-
   return (
     <div>
-        <Tabs createNewTab={createNewTab} setCurrentIndex={setCurrentIndex} currentIndex={currentIndex}/>
+        <Tabs createNewTab={createNewTab} setCurrentIndex={setCurrentIndex} currentIndex={currentIndex} totalSalary={totalSalary}/>
         <div className="grid grid-cols-2 gap-5 px-5">
           <div className="container bg-slate-200 rounded-xl p-5">
               <PageName currentIndex={currentIndex} />
