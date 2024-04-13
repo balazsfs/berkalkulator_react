@@ -35,7 +35,7 @@ const SingleSalaryCalculator = () => {
             <SalaryOut salary={salary} discount={discount} plusFromChildren={plusFromChildren} plusFromMarriage={plusFromMarriage}/>
         </div>
         <div className="container bg-slate-200 rounded-xl">
-
+          
         </div>
         </div>
     </div>

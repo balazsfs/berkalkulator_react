@@ -1,12 +1,16 @@
+import { useState } from "react"
 import SingleSalaryCalculator from "./components/SingleSalaryCalculator"
+import {TotalSalaryContext} from "./contexts/TotalSalaryContext"
 
 
 function App() {
-  
+  const [totalSalary,setTotalSalary] = useState('');
 
   return (
     <>
-      <SingleSalaryCalculator/>
+      <TotalSalaryContext.Provider value={[totalSalary,setTotalSalary]}>
+        <SingleSalaryCalculator/>
+      </TotalSalaryContext.Provider>
     </>
   )
 }
