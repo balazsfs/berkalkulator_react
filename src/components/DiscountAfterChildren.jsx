@@ -1,22 +1,42 @@
-import { useState,useContext } from "react"
+import { useContext } from "react"
 import { TotalSalaryContext } from "../contexts/TotalSalaryContext"
 
 const DiscountAfterChildren = ({currentIndex}) => {
-    const [currentChildren,setCurrentChildren] = useState(0);
-    const [discountedChildren,setdiscountedChildren] = useState(0);
     const [totalSalary,setTotalSalary] = useContext(TotalSalaryContext);
 
-    const changeHandlerCurrent = (getter,setter,value) =>{
+    const changeHandlerCurrent = (value) =>{
+        const getter = totalSalary[currentIndex].numberOfChildren;
+        console.log(getter + value);
         if(getter==0 && value > 0 || getter>0){
-            setter(getter+value);
-            mathAfterChange(currentChildren+value,discountedChildren);
+            const updatedTotalSalary = totalSalary.map((item, index) => {
+                if (index === currentIndex) {
+                    return {
+                        ...item, 
+                        numberOfChildren : getter+value,
+                        plusFromChildren : mathAfterChange(getter+value,totalSalary[currentIndex].numberOfDiscountedChildren)
+                    };
+                }
+                return item;
+            });
+            setTotalSalary(updatedTotalSalary);
         }
     }
 
-    const changeHandlerDiscounted = (getter,setter,value) =>{
+    const changeHandlerDiscounted = (value) =>{
+        const getter = totalSalary[currentIndex].numberOfDiscountedChildren;
+        const currentChildren = totalSalary[currentIndex].numberOfChildren;
         if(getter==0 && value > 0 && getter<currentChildren || getter==3 && value < 0 && getter<currentChildren || getter<3 && getter<currentChildren && getter>0 || getter==currentChildren && value < 0 && getter!=0 && getter>0){
-            setter(getter+value);
-            mathAfterChange(currentChildren,discountedChildren+value);
+            const updatedTotalSalary = totalSalary.map((item, index) => {
+                if (index === currentIndex) {
+                    return {
+                        ...item, 
+                        numberOfDiscountedChildren : getter+value,
+                        plusFromChildren : mathAfterChange(currentChildren,getter+value)
+                    };
+                }
+                return item;
+            });
+            setTotalSalary(updatedTotalSalary);
         }
     }
 
@@ -31,28 +51,18 @@ const DiscountAfterChildren = ({currentIndex}) => {
         }else{
             totalDiscount = 0;
         }
-
-        const updatedTotalSalary = totalSalary.map((item, index) => {
-            if (index === currentIndex) {
-                return {
-                    ...item, 
-                    plusFromChildren : totalDiscount
-                };
-            }
-            return item;
-        });
-        setTotalSalary(updatedTotalSalary);
+        return totalDiscount;
     }
 
     return (
         <div className="flex">
-            <button className="bg-white rounded-xl px-2 m-1 border border-black" onClick={() =>changeHandlerCurrent(currentChildren,setCurrentChildren,-1)}>-</button>
-            <p className="text-sm font-medium py-2">{currentChildren}</p>
-            <button className="bg-white rounded-xl px-2 m-1 border border-black" onClick={() =>changeHandlerCurrent(currentChildren,setCurrentChildren,+1)}>+</button>
+            <button className="bg-white rounded-xl px-2 m-1 border border-black" onClick={() =>changeHandlerCurrent(-1)}>-</button>
+            <p className="text-sm font-medium py-2">{totalSalary[currentIndex].numberOfChildren}</p>
+            <button className="bg-white rounded-xl px-2 m-1 border border-black" onClick={() =>changeHandlerCurrent(+1)}>+</button>
             <p className="text-sm font-medium py-2">Eltartott, ebből kedvezményezett: </p>
-            <button className="bg-white rounded-xl px-2 m-1 border border-black" onClick={() =>changeHandlerDiscounted(discountedChildren,setdiscountedChildren,-1)}>-</button>
-            <p className="text-sm font-medium py-2">{discountedChildren}</p>
-            <button className="bg-white rounded-xl px-2 m-1 border border-black" onClick={() =>changeHandlerDiscounted(discountedChildren,setdiscountedChildren,+1)}>+</button>
+            <button className="bg-white rounded-xl px-2 m-1 border border-black" onClick={() =>changeHandlerDiscounted(-1)}>-</button>
+            <p className="text-sm font-medium py-2">{totalSalary[currentIndex].numberOfDiscountedChildren}</p>
+            <button className="bg-white rounded-xl px-2 m-1 border border-black" onClick={() =>changeHandlerDiscounted(+1)}>+</button>
         </div>
     )
 }

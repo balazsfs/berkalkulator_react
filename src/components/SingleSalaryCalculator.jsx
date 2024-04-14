@@ -11,8 +11,6 @@ const SingleSalaryCalculator = () => {
   const [discount,setDiscount] = useState(0);
   const [plusFromMarriage, setPlusFromMarriage] = useState(0);
   const [plusFromChildren, setPlusFromChildren] = useState(0);
-  const [showNewMarriage, setShowNewMarriage] = useState('');
-  const [showDiscountFromChildren, setShowDiscountFromChildren] = useState('');
   const [currentIndex,setCurrentIndex] = useState(0);
 
   const [totalSalary,setTotalSalary] = useContext(TotalSalaryContext);
@@ -32,6 +30,8 @@ const SingleSalaryCalculator = () => {
       'showDiscountFromChildren' : false,
       'eligibleForNewMarriage' : false,
       'eligibleForNewMarriageHidden' : true,
+      'numberOfChildren' : 0,
+      'numberOfDiscountedChildren' : 0
     }
     setTotalSalary(prevTotalSalary => [...prevTotalSalary, basicData]);
   }

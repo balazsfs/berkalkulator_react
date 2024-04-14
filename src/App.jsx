@@ -18,6 +18,8 @@ function App() {
     'showDiscountFromChildren' : false,
     'eligibleForNewMarriage' : false,
     'eligibleForNewMarriageHidden' : true,
+    'numberOfChildren' : 0,
+    'numberOfDiscountedChildren' : 0
   }]);
 
   return (
