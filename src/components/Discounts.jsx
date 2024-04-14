@@ -91,7 +91,9 @@ const Discounts = ({currentIndex}) => {
       if (index === currentIndex) {
           return {
               ...item, 
-              showDiscountFromChildren : checked, plusFromChildren : 0
+              showDiscountFromChildren : checked, plusFromChildren : 0,
+              numberOfChildren : 0,
+              numberOfDiscountedChildren : 0
           };
       }
       return item;
