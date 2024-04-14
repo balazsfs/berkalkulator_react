@@ -6,7 +6,6 @@ const DiscountAfterChildren = ({currentIndex}) => {
 
     const changeHandlerCurrent = (value) =>{
         const getter = totalSalary[currentIndex].numberOfChildren;
-        console.log(getter + value);
         if(getter==0 && value > 0 || getter>0){
             const updatedTotalSalary = totalSalary.map((item, index) => {
                 if (index === currentIndex) {

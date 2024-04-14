@@ -1,4 +1,14 @@
-const SalaryOut = ({salary,discount,plusFromChildren,plusFromMarriage}) => {
+import { useContext } from "react"
+import { TotalSalaryContext } from "../contexts/TotalSalaryContext"
+
+const SalaryOut = ({currentIndex}) => {
+  const [totalSalary,setTotalSalary] = useContext(TotalSalaryContext);
+  
+  const discount = totalSalary[currentIndex].discount;
+  const salary =totalSalary[currentIndex].salary;
+  const plusFromMarriage = totalSalary[currentIndex].plusFromMarriage;
+  const plusFromChildren = totalSalary[currentIndex].plusFromChildren;
+
   return (
     <div className="text-center">
         <div className="text-xl font-bold text-slate-600 p-2">

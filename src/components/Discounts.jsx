@@ -77,7 +77,8 @@ const Discounts = ({currentIndex}) => {
       if (index === currentIndex) {
           return {
               ...item, 
-              showNewMarriage : checked, plusFromMarriage : 0
+              showNewMarriage : checked, plusFromMarriage : 0,
+              eligibleForNewMarriageHidden : checked
           };
       }
       return item;

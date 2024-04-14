@@ -61,7 +61,7 @@ const DateModal = ({currentIndex}) => {
         >
           Dátum hozzáadása
         </button>
-        {totalSalary[currentIndex].eligibleForNewMarriage ?<div className="bg-green-500 ml-1 text-sm p-1 rounded-xl text-white mb-1 w-32 font-bold text-center">Jogosult</div> : <div className={`bg-red-600 rounded-xl text-white text-sm p-1 ml-1 mb-1 w-32 font-bold text-center ${totalSalary[currentIndex].eligibleForNewMarriageHidden ? "hidden" : ""}`}>Nem jogosult</div>}
+        {totalSalary[currentIndex].eligibleForNewMarriage ?<div className={`bg-green-600 rounded-xl text-white text-sm p-1 ml-1 mb-1 w-32 font-bold text-center ${totalSalary[currentIndex].eligibleForNewMarriageHidden ? "hidden" : ""}`}>Jogosult</div> : <div className={`bg-red-600 rounded-xl text-white text-sm p-1 ml-1 mb-1 w-32 font-bold text-center ${totalSalary[currentIndex].eligibleForNewMarriageHidden ? "hidden" : ""}`}>Nem jogosult</div>}
         {showModal ? (
           <>
             <div
