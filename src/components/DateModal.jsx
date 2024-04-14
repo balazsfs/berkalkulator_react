@@ -1,9 +1,9 @@
-import { useState } from "react"
+import { useState,useContext } from "react"
+import { TotalSalaryContext } from "../contexts/TotalSalaryContext"
 
-const DateModal = (props) => {
+const DateModal = ({currentIndex}) => {
     const [showModal, setShowModal] = useState(false);
-    const [eligible,setEligible] = useState('');
-    const {setPlusFromMarriage} = props;
+    const [totalSalary,setTotalSalary] = useContext(TotalSalaryContext);
 
     const handleDateInputCheck = () => {
         const value = document.getElementById('dateInput').value;
@@ -21,12 +21,31 @@ const DateModal = (props) => {
             const diffInYear = yearDiff + monthDiff/12 + dayDiff/365;
 
             if(diffInYear <= 2.0 && diffInYear >= 0){
-                setEligible(true);
-                setPlusFromMarriage(5000);
+              const updatedTotalSalary = totalSalary.map((item, index) => {
+                if (index === currentIndex) {
+                    return {
+                      ...item, 
+                    plusFromMarriage : 5000,
+                    eligibleForNewMarriage : true,
+                    eligibleForNewMarriageHidden : false
+                  };
+                }
+                return item;
+              });
+              setTotalSalary(updatedTotalSalary);
             }else{
-                setEligible(false);
-                document.getElementById('notEligible').classList.remove('hidden');
-                setPlusFromMarriage(0);
+                const updatedTotalSalary = totalSalary.map((item, index) => {
+                  if (index === currentIndex) {
+                      return {
+                          ...item, 
+                          plusFromMarriage : 0,
+                          eligibleForNewMarriage : false,
+                          eligibleForNewMarriageHidden : false
+                      };
+                  }
+                  return item;
+                });
+                setTotalSalary(updatedTotalSalary);
             }
         } else {
             errorDiv.classList.remove('hidden');
@@ -42,7 +61,7 @@ const DateModal = (props) => {
         >
           Dátum hozzáadása
         </button>
-        {eligible ? <div className="bg-green-500 ml-1 text-sm p-1 rounded-xl text-white mb-1 w-32 font-bold text-center">Jogosult</div> : <div id="notEligible" className="bg-red-600 rounded-xl text-white text-sm p-1 ml-1 mb-1 w-32 font-bold text-center hidden">Nem jogosult</div>}
+        {totalSalary[currentIndex].eligibleForNewMarriage ?<div className="bg-green-500 ml-1 text-sm p-1 rounded-xl text-white mb-1 w-32 font-bold text-center">Jogosult</div> : <div className={`bg-red-600 rounded-xl text-white text-sm p-1 ml-1 mb-1 w-32 font-bold text-center ${totalSalary[currentIndex].eligibleForNewMarriageHidden ? "hidden" : ""}`}>Nem jogosult</div>}
         {showModal ? (
           <>
             <div

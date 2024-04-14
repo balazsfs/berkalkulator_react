@@ -2,7 +2,7 @@ import SalaryInput from "./SalaryInput"
 import { TotalSalaryContext } from "../contexts/TotalSalaryContext"
 import { useContext } from 'react';
 
-const Salary = ({resetSwitches,currentIndex}) => {
+const Salary = ({currentIndex}) => {
     const [totalSalary, setTotalSalary] = useContext(TotalSalaryContext);
  
     const handleInputChange = (event) => {
@@ -14,25 +14,39 @@ const Salary = ({resetSwitches,currentIndex}) => {
                     ...item, 
                     salary: filteredValue,
                     rangeInput :50,
-                    savedInput: filteredValue
+                    savedInput: filteredValue,
+                    discount : 0,
+                    plusFromMarriage : 0,
+                    plusFromChildren : 0,
+                    showNewMarriage : false,
+                    showDiscountFromChildren : false,
+                    personalDiscountSwitch : false,
+                    underDiscountSwitch : false
                 };
             }
             return item;
         });
         setTotalSalary(updatedTotalSalary);
-        resetSwitches();
     }
 
     const handleRangeInputChange = (event)=>{
         const value = event.target.value;
         const updatedTotalSalary = totalSalary.map((item, index) => {
             if (index === currentIndex) {
-                return { ...item, salary: Math.round(totalSalary[currentIndex].savedInput*value/100*2), rangeInput: value };
+                return { ...item, salary: Math.round(totalSalary[currentIndex].savedInput*value/100*2),
+                    rangeInput: value,
+                    discount : 0,
+                    plusFromMarriage : 0,
+                    plusFromChildren : 0,
+                    showNewMarriage : false,
+                    showDiscountFromChildren : false,
+                    personalDiscountSwitch : false,
+                    underDiscountSwitch : false 
+                };
             }
             return item;
         });
         setTotalSalary(updatedTotalSalary);
-        resetSwitches();
     }
 
     const handleButtonClick = (event) =>{
@@ -41,12 +55,21 @@ const Salary = ({resetSwitches,currentIndex}) => {
         
         const updatedTotalSalary = totalSalary.map((item, index) => {
             if (index === currentIndex) {
-                return { ...item, salary: Math.round(totalSalary[currentIndex].salary-(filteredValue/100*totalSalary[currentIndex].salary)*-1), savedInput : Math.round(totalSalary[currentIndex].salary-(filteredValue/100*totalSalary[currentIndex].salary)*-1), rangeInput :50 };
+                return { ...item, salary: Math.round(totalSalary[currentIndex].salary-(filteredValue/100*totalSalary[currentIndex].salary)*-1),
+                    savedInput : Math.round(totalSalary[currentIndex].salary-(filteredValue/100*totalSalary[currentIndex].salary)*-1), 
+                    rangeInput :50,
+                    discount : 0,
+                    plusFromMarriage : 0,
+                    plusFromChildren : 0,
+                    showNewMarriage : false,
+                    showDiscountFromChildren : false,
+                    personalDiscountSwitch : false,
+                    underDiscountSwitch : false
+                };
             }
             return item;
         });
         setTotalSalary(updatedTotalSalary);
-        resetSwitches();
     }
 
     return (

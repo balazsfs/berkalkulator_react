@@ -29,23 +29,13 @@ const SingleSalaryCalculator = () => {
       'underDiscountSwitch' : false,
       'showNewMarriage' : false,
       'personalDiscountSwitch' : false,
-      'showDiscountFromChildren' : false
+      'showDiscountFromChildren' : false,
+      'eligibleForNewMarriage' : false,
+      'eligibleForNewMarriageHidden' : true,
     }
     setTotalSalary(prevTotalSalary => [...prevTotalSalary, basicData]);
   }
 
-  const resetSwitches = ()=>{
-    const switches = document.querySelectorAll('#switch');
-
-    switches.forEach((element) => {
-      element.checked = false;
-    });
-    setDiscount(0);
-    setPlusFromMarriage(0);
-    setPlusFromChildren(0);
-    setShowNewMarriage(false);
-    setShowDiscountFromChildren(false);
-  }
 
   return (
     <div>
@@ -53,7 +43,7 @@ const SingleSalaryCalculator = () => {
         <div className="grid grid-cols-2 gap-5 px-5">
           <div className="container bg-slate-200 rounded-xl p-5">
               <PageName currentIndex={currentIndex} />
-              <Salary resetSwitches={resetSwitches} currentIndex={currentIndex} />
+              <Salary currentIndex={currentIndex} />
               <Discounts currentIndex={currentIndex}/>
               <SalaryOut salary={salary} discount={discount} plusFromChildren={plusFromChildren} plusFromMarriage={plusFromMarriage} currentIndex={currentIndex}/>
           </div>

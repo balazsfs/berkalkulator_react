@@ -102,9 +102,9 @@ const Discounts = ({currentIndex}) => {
   return (
     <div>
         <LabeledSwitch checked={totalSalary[currentIndex].underDiscountSwitch} title={"25 év alattiak kedvezménye"} handler={handleUnderTwentyFiveSwitch} />
-        <LabeledSwitch checked={totalSalary[currentIndex].showNewMarriage} title={"Friss házasok kedvezménye"} handler={handleNewMarriage} /> {totalSalary[currentIndex].showNewMarriage && <DateModal/>} 
+        <LabeledSwitch checked={totalSalary[currentIndex].showNewMarriage} title={"Friss házasok kedvezménye"} handler={handleNewMarriage} /> {totalSalary[currentIndex].showNewMarriage && <DateModal currentIndex={currentIndex}/>} 
         <LabeledSwitch checked={totalSalary[currentIndex].personalDiscountSwitch} title={"Személyi adókedvezmény"} handler={handlePersonalDiscount}/> 
-        <LabeledSwitch checked={totalSalary[currentIndex].showDiscountFromChildren} title={"Családi adókedvezmény"}handler={handleChildrenPlus} /> {totalSalary[currentIndex].showDiscountFromChildren && <DiscountAfterChildren />}
+        <LabeledSwitch checked={totalSalary[currentIndex].showDiscountFromChildren} title={"Családi adókedvezmény"}handler={handleChildrenPlus} /> {totalSalary[currentIndex].showDiscountFromChildren && <DiscountAfterChildren  currentIndex={currentIndex}/>}
     </div>
   )
 }

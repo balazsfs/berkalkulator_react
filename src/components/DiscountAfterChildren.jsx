@@ -1,9 +1,10 @@
-import { useState } from "react"
+import { useState,useContext } from "react"
+import { TotalSalaryContext } from "../contexts/TotalSalaryContext"
 
-const DiscountAfterChildren = (props) => {
-    const {setPlusFromChildren} = props;
+const DiscountAfterChildren = ({currentIndex}) => {
     const [currentChildren,setCurrentChildren] = useState(0);
     const [discountedChildren,setdiscountedChildren] = useState(0);
+    const [totalSalary,setTotalSalary] = useContext(TotalSalaryContext);
 
     const changeHandlerCurrent = (getter,setter,value) =>{
         if(getter==0 && value > 0 || getter>0){
@@ -31,7 +32,16 @@ const DiscountAfterChildren = (props) => {
             totalDiscount = 0;
         }
 
-        setPlusFromChildren(totalDiscount);
+        const updatedTotalSalary = totalSalary.map((item, index) => {
+            if (index === currentIndex) {
+                return {
+                    ...item, 
+                    plusFromChildren : totalDiscount
+                };
+            }
+            return item;
+        });
+        setTotalSalary(updatedTotalSalary);
     }
 
     return (
