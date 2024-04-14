@@ -5,8 +5,25 @@ const DiscountAfterChildren = ({currentIndex}) => {
     const [totalSalary,setTotalSalary] = useContext(TotalSalaryContext);
 
     const changeHandlerCurrent = (value) =>{
+        console.log(totalSalary[currentIndex].numberOfChildren+value);
+        console.log(totalSalary[currentIndex].numberOfDiscountedChildren);
         const getter = totalSalary[currentIndex].numberOfChildren;
-        if(getter==0 && value > 0 || getter>0){
+        if(getter+value < totalSalary[currentIndex].numberOfDiscountedChildren && getter != 0){
+            const updatedTotalSalary = totalSalary.map((item, index) => {
+                if (index === currentIndex) {
+                    return {
+                        ...item, 
+                        numberOfChildren : getter+value,
+                        numberOfDiscountedChildren : getter+value,
+                        plusFromChildren : mathAfterChange(getter+value,totalSalary[currentIndex].numberOfDiscountedChildren+value),
+                        
+                    };
+                }
+                return item;
+            });
+            setTotalSalary(updatedTotalSalary);
+        }
+        else if(getter==0 && value > 0 || getter>0){
             const updatedTotalSalary = totalSalary.map((item, index) => {
                 if (index === currentIndex) {
                     return {

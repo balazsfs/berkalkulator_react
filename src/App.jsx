@@ -53,7 +53,7 @@ function App() {
           <div className="w-full">
           <Tabs createNewTab={createNewTab} setCurrentIndex={setCurrentIndex} currentIndex={currentIndex} totalSalary={totalSalary}/>
             <div className="grid xl:grid-cols-2 lg:grid-cols-1 gap-5 px-5 w-2/4">
-              <SingleSalaryCalculator currentIndex={currentIndex}/>
+              <SingleSalaryCalculator currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} createNewTab={createNewTab}/>
               <SalaryList/>
             </div>
             </div>
