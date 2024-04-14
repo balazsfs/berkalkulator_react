@@ -2,6 +2,7 @@ import { useState } from "react"
 import SingleSalaryCalculator from "./components/SingleSalaryCalculator"
 import {TotalSalaryContext} from "./contexts/TotalSalaryContext"
 import Tabs from "./components/Tabs"
+import SalaryList from "./components/SalaryList";
 
 
 function App() {
@@ -48,15 +49,15 @@ function App() {
   return (
     <>
       <TotalSalaryContext.Provider value={[totalSalary,setTotalSalary]}>
-        <div>
-        <Tabs createNewTab={createNewTab} setCurrentIndex={setCurrentIndex} currentIndex={currentIndex} totalSalary={totalSalary}/>
-          <div className="grid grid-cols-2 gap-5 px-5">
-            <SingleSalaryCalculator currentIndex={currentIndex}/>
-            <div className="container bg-slate-200 rounded-xl">
-
+        <div className="grid content-center">
+          <div className="w-full">
+          <Tabs createNewTab={createNewTab} setCurrentIndex={setCurrentIndex} currentIndex={currentIndex} totalSalary={totalSalary}/>
+            <div className="grid xl:grid-cols-2 lg:grid-cols-1 gap-5 px-5 w-2/4">
+              <SingleSalaryCalculator currentIndex={currentIndex}/>
+              <SalaryList/>
             </div>
-        </div>
-    </div>
+            </div>
+          </div>
       </TotalSalaryContext.Provider>
     </>
   )
